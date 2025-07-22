@@ -4,11 +4,15 @@
  */
 
 #pragma once
+#include <iostream>
 #include "Creational/D01_Singleton/demo_singleton.hpp"
+#include "Creational/D02_Builder/demo_builder.hpp"
 
+using namespace std;
 namespace myapp {
     typedef enum {
         singleton,
+        builder,
     } demo_type;
 
     class DemoExample {
@@ -17,8 +21,10 @@ namespace myapp {
             switch (type) {
                 case singleton:
                     return demo_singleton();
+                case builder:
+                    return demo_builder();
 
-                default: std::cout << "No example!" << std::endl;
+                default: cout << "No example!" << endl;
             }
         }
 
