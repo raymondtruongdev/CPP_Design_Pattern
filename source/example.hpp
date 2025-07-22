@@ -5,8 +5,8 @@
 
 #pragma once
 #include <iostream>
-#include "Creational/D01_Singleton/demo_singleton.hpp"
-#include "Creational/D02_Builder/demo_builder.hpp"
+#include "Creational/C01_Singleton/demo_singleton.hpp"
+#include "Creational/C02_Builder/demo_builder.hpp"
 
 using namespace std;
 namespace myapp {
