@@ -3,9 +3,11 @@ project(CPP_Design_Pattern)
 
 set(CMAKE_CXX_STANDARD 20)
 
+# ------------------------------------------------------------
 # Set variable PROJECT_ROOT as the root directory of the project, we can use it in our source files
 add_compile_definitions(PROJECT_ROOT="${CMAKE_SOURCE_DIR}")
 
+# ------------------------------------------------------------
 # Using custom_spdlog library for logging
 include(FetchContent)
 FetchContent_Declare(
@@ -27,15 +29,17 @@ add_compile_definitions(SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE)
 
 # ------------------------------------------------------------
 # Gather all source files recursively from /source/
-file(GLOB_RECURSE SOURCE_FILES "${PROJECT_SOURCE_DIR}/source/*")
+file(GLOB_RECURSE SOURCE_FILES "${PROJECT_SOURCE_DIR}/source/*.cpp")
 
+# Define main executable for the project
 add_executable(CPP_Design_Pattern main.cpp ${SOURCE_FILES})
 
+# ------------------------------------------------------------
 # Include directories for header visibility  
 target_include_directories(CPP_Design_Pattern PRIVATE 
     ${PROJECT_SOURCE_DIR}/source
-    ${PROJECT_SOURCE_DIR}/source/*/
 )
 
+# ------------------------------------------------------------
 # Then link with custom_spdlog
 target_link_libraries(CPP_Design_Pattern PRIVATE custom_spdlog::custom_spdlog)
