@@ -9,7 +9,7 @@
 #include <iostream>
 #include <thread>
 
-#include "Singleton.hpp"
+#include "singleton.hpp"
 
 using namespace myapp;
 
