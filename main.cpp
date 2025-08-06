@@ -1,6 +1,7 @@
 #include <iostream>
+#include "logger.hpp"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    LOG_INFO("MySingleton  is working!");
     return 0;
 }
