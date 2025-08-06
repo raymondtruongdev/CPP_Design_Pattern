@@ -1,7 +1,9 @@
 #include <iostream>
-#include "logger.hpp"
+
+#include "examples.hpp"
+
 
 int main() {
-    LOG_INFO("MySingleton  is working!");
+    DemoExample::create_demo(singleton);
     return 0;
 }
