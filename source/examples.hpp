@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include "creational_patterns/builder/demo_builder.hpp"
+#include "creational_patterns/factory_method/demo_factory_method.cpp"
 #include "creational_patterns/singleton/demo_singleton.hpp"
 
 using namespace std;
@@ -25,6 +26,9 @@ namespace myapp {
                     return demo_singleton();
                 case builder:
                     return demo_builder();
+                case factory_method:
+                    return demo_factory_method();
+
 
                 default: cout << "No example!" << endl;
             }
