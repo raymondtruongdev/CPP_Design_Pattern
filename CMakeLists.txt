@@ -27,9 +27,17 @@ FetchContent_MakeAvailable(custom_spdlog)
 add_compile_definitions(SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE)
 
 # ------------------------------------------------------------
-# Define main executable for the project
-add_executable(CPP_Design_Pattern main.cpp)
+# Gather all source files recursively from /source/
+file(GLOB_RECURSE SOURCE_FILES "${PROJECT_SOURCE_DIR}/source/*.cpp")
 
+# Define main executable for the project
+add_executable(CPP_Design_Pattern main.cpp ${SOURCE_FILES})
+
+# ------------------------------------------------------------
+# Include directories for header visibility
+target_include_directories(CPP_Design_Pattern PRIVATE
+        ${PROJECT_SOURCE_DIR}/source
+)
 # ------------------------------------------------------------
 # Then link with custom_spdlog
 target_link_libraries(CPP_Design_Pattern PRIVATE custom_spdlog::custom_spdlog)
