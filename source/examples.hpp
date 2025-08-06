@@ -6,6 +6,7 @@
 #pragma once
 #include <iostream>
 
+#include "creational_patterns/builder/demo_builder.hpp"
 #include "creational_patterns/singleton/demo_singleton.hpp"
 
 using namespace std;
@@ -22,6 +23,8 @@ namespace myapp {
             switch (type) {
                 case singleton:
                     return demo_singleton();
+                case builder:
+                    return demo_builder();
 
                 default: cout << "No example!" << endl;
             }
