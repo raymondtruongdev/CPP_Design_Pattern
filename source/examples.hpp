@@ -6,6 +6,7 @@
 #pragma once
 #include <iostream>
 
+#include "creational_patterns/abstract_factory/demo_abstract_factory.hpp"
 #include "creational_patterns/builder/demo_builder.hpp"
 #include "creational_patterns/factory_method/demo_factory_method.hpp"
 #include "creational_patterns/singleton/demo_singleton.hpp"
@@ -16,6 +17,7 @@ namespace myapp {
         singleton,
         builder,
         factory_method,
+        abstract_factory
     } demo_type;
 
     class DemoExample {
@@ -28,6 +30,8 @@ namespace myapp {
                     return demo_builder();
                 case factory_method:
                     return demo_factory_method();
+                case abstract_factory:
+                    return demo_abstract_factory();
 
 
                 default: cout << "No example!" << endl;
