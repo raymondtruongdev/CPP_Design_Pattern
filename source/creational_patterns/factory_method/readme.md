@@ -1,72 +1,44 @@
 # 🧬 Factory Method Design Pattern 
+
+Factory Method is a creational design pattern that provides an interface
+for creating objects in a superclass, but allows subclasses to alter the 
+type of objects that will be created.
+
 ##  Class Diagram
 
 ```mermaid
 classDiagram
-
-%% Interfaces / Abstract classes
-    class Animal {
-        <<abstract>>
-        +make_sound()
-        +move()
-        +leg_count() const
-    }
-
-    class Flyable {
+    class Car {
         <<interface>>
-        +fly()
+        +make_car()
     }
 
-    class AnimalFactory {
+    class SportsCar {
+        +make_car()
+    }
+
+    class EconomyCar {
+        +make_car()
+    }
+
+    Car <|.. SportsCar
+    Car <|.. EconomyCar
+
+    class CarStore {
         <<abstract>>
-        +createAnimal()
+        +order_car()
+        +create_car()
     }
 
-%% Concrete Animal classes
-    class Dog {
-        +make_sound()
-        +move()
-        +leg_count() const
+    class SportsCarStore {
+        +create_car()
     }
 
-    class Bird {
-        +make_sound()
-        +move()
-        +fly()
-        +leg_count() const
+    class EconomyCarStore {
+        +create_car()
     }
 
-    class Chicken {
-        +make_sound()
-        +move()
-        +leg_count() const
-    }
-
-%% Concrete Factory classes
-    class DogFactory {
-        +createAnimal()
-    }
-
-    class BirdFactory {
-        +createAnimal()
-    }
-
-    class ChickenFactory {
-        +createAnimal()
-    }
-
-%% Relationships
-    Animal <|-- Dog
-    Animal <|-- Chicken
-    Animal <|-- Bird
-
-
-    Flyable <|.. Bird
-
-    AnimalFactory <|-- DogFactory
-    AnimalFactory <|-- BirdFactory
-    AnimalFactory <|-- ChickenFactory
-
-
+    CarStore <|-- SportsCarStore
+    CarStore <|-- EconomyCarStore
 
 ```

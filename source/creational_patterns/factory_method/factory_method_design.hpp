@@ -12,98 +12,54 @@ using namespace std;
 
 namespace myapp {
 
-    // Interface: Flyable
-    class Flyable {
+    // Interface: Car
+    class Car {
     public:
-        virtual void fly() = 0;
-        virtual ~Flyable() = default;
+        virtual void make_car() = 0;
+        virtual ~Car() = default;
     };
 
-    // Abstract Product: Animal
-    class Animal {
+    // Concrete Car: SportsCar
+    class SportsCar final : public Car {
     public:
-        virtual void make_sound() = 0;
-        virtual void move() = 0;
-        [[nodiscard]] virtual int leg_count() const = 0;
-        virtual ~Animal() = default;
-    };
-
-    // Concrete Animal: Dog
-    class Dog final : public Animal {
-    public:
-        void make_sound() override {
-            cout << "Dog: Woof!" << endl;
-        }
-
-        void move() override {
-            cout << "Dog runs on 4 legs." << endl;
-        }
-
-        [[nodiscard]] int leg_count() const override {
-            return 4;
+        void make_car() override {
+            std::cout << "Sports car is made." << std::endl;
         }
     };
 
-    // Concrete Animal: Dog
-    class Bird final : public Animal, public Flyable {
+    // Concrete Car: EconomyCar
+    class EconomyCar final : public Car {
     public:
-        void make_sound() override {
-            cout << "Bird: Chirp!" << endl;
-        }
-
-        void move() override {
-            cout << "Bird hops on 2 legs." << endl;
-        }
-
-        [[nodiscard]] int leg_count() const override {
-            return 2;
-        }
-        void fly() override {
-            cout << "Bird is flying!" << endl;
+        void make_car() override {
+            std::cout << "Economy car is made." << std::endl;
         }
     };
 
-    // Concrete Animal: Chicken
-    class Chicken final : public Animal {
+    // Creator: CarStore (Factory Method pattern base class)
+    class CarStore {
     public:
-        void make_sound() override {
-            cout << "Chicken: Cluck!" << endl;
+        void order_car() {
+            auto car = create_car();      // Factory Method
+            car->make_car();              // Use the product
         }
 
-        void move() override {
-            cout << "Chicken walks on 2 legs." << endl;
-        }
+        virtual std::unique_ptr<Car> create_car() = 0;  // Factory Method
+        virtual ~CarStore() = default;
+    };
 
-        [[nodiscard]] int leg_count() const override {
-            return 2;
+    // Concrete Creator: SportsCarStore
+    class SportsCarStore final : public CarStore {
+    public:
+        std::unique_ptr<Car> create_car() override {
+            return std::make_unique<SportsCar>();
         }
     };
 
-    // ------------------ Factory --------------------
-    class AnimalFactory {
+    // Concrete Creator: EconomyCarStore
+    class EconomyCarStore final : public CarStore {
     public:
-        virtual unique_ptr<Animal> create_animal()=0;
-        virtual ~AnimalFactory() = default;
-    };
-
-    class DogFactory final : public AnimalFactory {
-    public:
-        unique_ptr<Animal> create_animal() override {
-            return make_unique<Dog>();
-        }
-    };
-
-    class BirdFactory final: public AnimalFactory {
-    public:
-        unique_ptr<Animal> create_animal() override {
-            return make_unique<Bird>();
-        }
-    };
-
-    class ChickenFactory final: public AnimalFactory {
-    public:
-        unique_ptr<Animal> create_animal() override {
-            return make_unique<Chicken>();
+        std::unique_ptr<Car> create_car() override {
+            return std::make_unique<EconomyCar>();
         }
     };
 

@@ -11,33 +11,13 @@
 namespace myapp {
     using namespace  std;
 
-    inline void show_animal(const unique_ptr<Animal>& animal) {
-        animal->make_sound();
-        animal->move();
-        cout << "Legs: " << animal->leg_count() << endl;
-        // Try to cast to Flyable
-        if (Flyable* flyer = dynamic_cast<Flyable*>(animal.get())) {
-            flyer->fly();
-        } else {
-            cout << "This animal cannot fly." << endl;
-        }
-        cout << "------------------------" << endl;
-    }
     inline void demo_factory_method() {
         LOG_INFO("============ Demo Factory Method Design Pattern ===========");
 
-        unique_ptr<AnimalFactory> factory = nullptr;
+        const std::unique_ptr<CarStore> sport_store = std::make_unique<SportsCarStore>();
+        sport_store->order_car();  // Output: Sports car is made.
 
-        factory = make_unique<DogFactory>();
-        const auto dog = factory->create_animal();
-        show_animal(dog);
-
-        factory = make_unique<BirdFactory>();
-        const auto bird = factory->create_animal();
-        show_animal(bird);
-
-        factory = make_unique<ChickenFactory>();
-        const auto chicken = factory->create_animal();
-        show_animal(chicken);
+        const std::unique_ptr<CarStore> economy_store = std::make_unique<EconomyCarStore>();
+        economy_store->order_car();  // Output: Economy car is made.
     }
 }
