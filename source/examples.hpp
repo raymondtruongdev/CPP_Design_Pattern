@@ -6,6 +6,7 @@
 #pragma once
 #include <iostream>
 
+#include "behavioral_patterns/observer/demo_observer.hpp"
 #include "creational_patterns/abstract_factory/demo_abstract_factory.hpp"
 #include "creational_patterns/builder/demo_builder.hpp"
 #include "creational_patterns/factory_method/demo_factory_method.hpp"
@@ -20,6 +21,7 @@ namespace myapp {
         factory_method,
         abstract_factory,
         prototype,
+        observer,
     } demo_type;
 
     class DemoExample {
@@ -36,6 +38,8 @@ namespace myapp {
                     return demo_abstract_factory();
                 case prototype:
                     return demo_prototype();
+                case observer:
+                    return demo_observer();
 
 
                 default: cout << "No example!" << endl;
