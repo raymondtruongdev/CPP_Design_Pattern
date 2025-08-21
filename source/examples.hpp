@@ -4,10 +4,10 @@
  */
 
 #pragma once
-#include <iostream>
 
 #include "behavioral_patterns/observer/demo_observer.hpp"
 #include "behavioral_patterns/state/demo_state.hpp"
+#include "behavioral_patterns/strategy/demo_strategy.hpp"
 #include "creational_patterns/abstract_factory/demo_abstract_factory.hpp"
 #include "creational_patterns/builder/demo_builder.hpp"
 #include "creational_patterns/factory_method/demo_factory_method.hpp"
@@ -24,6 +24,7 @@ namespace myapp {
         prototype,
         observer,
         state,
+        strategy,
     } demo_type;
 
     class DemoExample {
@@ -44,7 +45,8 @@ namespace myapp {
                     return demo_observer();
                 case state:
                     return demo_state();
-
+                case strategy:
+                    return demo_strategy();
 
                 default: cout << "No example!" << endl;
             }
