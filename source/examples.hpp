@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include "behavioral_patterns/observer/demo_observer.hpp"
+#include "behavioral_patterns/state/demo_state.hpp"
 #include "creational_patterns/abstract_factory/demo_abstract_factory.hpp"
 #include "creational_patterns/builder/demo_builder.hpp"
 #include "creational_patterns/factory_method/demo_factory_method.hpp"
@@ -22,11 +23,12 @@ namespace myapp {
         abstract_factory,
         prototype,
         observer,
+        state,
     } demo_type;
 
     class DemoExample {
     public:
-        static void create_demo(demo_type type) {
+        static void create_demo(const demo_type type) {
             switch (type) {
                 case singleton:
                     return demo_singleton();
@@ -40,6 +42,8 @@ namespace myapp {
                     return demo_prototype();
                 case observer:
                     return demo_observer();
+                case state:
+                    return demo_state();
 
 
                 default: cout << "No example!" << endl;
