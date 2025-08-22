@@ -9,6 +9,7 @@
 #include "behavioral_patterns/state/demo_state.hpp"
 #include "behavioral_patterns/strategy/demo_strategy.hpp"
 #include "behavioral_patterns/template_method/demo_template_method.hpp"
+#include "behavioral_patterns/visitor_method/demo_visitor_method.hpp"
 #include "creational_patterns/abstract_factory/demo_abstract_factory.hpp"
 #include "creational_patterns/builder/demo_builder.hpp"
 #include "creational_patterns/factory_method/demo_factory_method.hpp"
@@ -27,6 +28,7 @@ namespace myapp {
         state,
         strategy,
         template_method,
+        visitor_method,
     } demo_type;
 
     class DemoExample {
@@ -51,6 +53,8 @@ namespace myapp {
                     return demo_strategy();
                 case template_method:
                     return demo_template_method();
+                case visitor_method:
+                    return demo_visitor_method();
 
                 default: cout << "No example!" << endl;
             }
